@@ -1,0 +1,14 @@
+#Brand{
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 3em;
+}
+
+.ItemNav{
+    margin: 0 15px;
+    text-transform: uppercase;
+}
+
+.fas{
+    font-size: 25px;
+}

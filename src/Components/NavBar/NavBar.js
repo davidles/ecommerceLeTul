@@ -1,19 +1,33 @@
 import React from 'react'
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import './NavBar.css'
+import CartWidget from '../CartWidget/CartWidget'
 
 function NavBar() {
     return (
         <>
-            <Navbar bg="light" className="justify-content-center">
+            <Navbar bg="light" className="justify-content-around">
                 <Navbar.Brand href="#">
-                    <h1>LeTul</h1>
+                    <h1 id="Brand">LeTul</h1>
                 </Navbar.Brand>
+                <Form inline>
+                    <FormControl type="text" placeholder="Search..." className="mr-sm-2"/>
+                    <Button className="btn btn-info">Search</Button>
+                </Form>
+                <Navbar>
+                    <Nav className="md-lg">
+                        <Nav.Link href="#" className="ItemNav">Login</Nav.Link>
+                        <Nav.Link href="#" className="ItemNav">
+                            <CartWidget />
+                        </Nav.Link>
+                    </Nav>
+                </Navbar>
             </Navbar>
             <Navbar bg="dark" variant="dark" expand="lg" className="justify-content-center">
                 <Nav className="md-lg">
-                    <Nav.Link href="#">Más vendidos</Nav.Link>
-                    <Nav.Link href="#">Ofertas</Nav.Link>
-                    <NavDropdown title="Categorias" id="basic-nav-dropdown">
+                    <Nav.Link href="#" className="ItemNav">Más vendidos</Nav.Link>
+                    <Nav.Link href="#" className="ItemNav">Ofertas</Nav.Link>
+                    <NavDropdown title="Categorias" id="basic-nav-dropdown" className="ItemNav">
                         <NavDropdown.Item href="#">
                             <p>Cremas</p>
                         </NavDropdown.Item>

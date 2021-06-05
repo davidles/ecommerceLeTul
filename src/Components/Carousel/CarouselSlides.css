@@ -1,0 +1,13 @@
+.text{
+    background-color: rgba(0, 0, 0, 0.616);
+    color: white;
+}
+
+.SlidesCarousel{
+    height: 70vh;
+    
+}
+
+.ComponentCarousel{
+    margin-bottom: 4em;
+}
