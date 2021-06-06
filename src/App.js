@@ -1,20 +1,22 @@
 import './App.css';
+
 /*Componentes*/
 import NavBar from './Components/NavBar/NavBar'
-import CarouselSlides from './Components/Carousel/CarouselSlides'
 import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
-
-/*Views*/
-import Cards from './Views/Cards/Cards'
+import ItemCount from './Components/ItemCount/ItemCount'
 
 
 function App() {
+
+  const onAdd = ( cantidad ) =>{
+    console.log(`Cantidad de productos: ${cantidad}`)
+  }
+
   return (
     <div className="App">
       <NavBar/>
-      <CarouselSlides />
       <ItemListContainer />
-      <Cards />
+      <ItemCount stock={8} initial={2} onAdd={onAdd}/>
     </div>
   );
 }
