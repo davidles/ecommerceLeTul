@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 
-const ItemCount = ({ stock, initial, cardTitle, onAdd }) => {
+const ItemCount = ({ stock, initial, onAdd }) => {
 
     const INITIAL_COUNT = initial || 1
     const STOCKEADO = stock || 10
@@ -34,8 +34,7 @@ const ItemCount = ({ stock, initial, cardTitle, onAdd }) => {
 
     return (
         <div>
-            <Card.Title>{cardTitle || "#Producto"}</Card.Title>
-            <Card.Img />
+            <h4>#Productos</h4>
             <small> Stock: {STOCKEADO - count} </small>
             <p>{count}</p>
 
