@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Card } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 const ItemCount = ({ stock, initial, onAdd }) => {
 
@@ -13,40 +13,32 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     const sumarProductos = () => {
         if (count < STOCKEADO) {
             setCount(count + 1);
-
-        } else {
-            setCount(STOCKEADO)
-
-        } 
+         } 
     }
 
     const restarProductos = () => {
         if (count > INITIAL_COUNT) {
             setCount(count - 1);
-
-
-        } else {
-            setCount(count)
-        }
+         } 
     }
 
 
 
     return (
         <div>
-            <h4>#Productos</h4>
+        
             <small> Stock: {STOCKEADO - count} </small>
             <p>{count}</p>
 
             <Button onClick={() => restarProductos()}
-                variant="light">-</Button>
+                variant="light" disabled={count<=1}>-</Button>
 
             <Button onClick={() => sumarProductos()}
                 variant="light">+</Button>
 
             <hr />
 
-            <Button variant="primary" onClick={() => onAdd(count)}>Agregar al carrito</Button>
+            <Button variant="primary" onClick={() => onAdd(count)}>Ver más</Button>
 
         </div>
     )
