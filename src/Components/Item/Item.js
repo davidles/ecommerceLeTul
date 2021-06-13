@@ -1,8 +1,7 @@
 import React from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import ItemCount from '../ItemCount/ItemCount'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
-const Item = ({ title, price, pictureURL, stock })  => {
+const Item = ({ title, price, pictureURL })  => {
 
     const onAdd = ( cantidad ) =>{
         console.log(`Cantidad de productos: ${cantidad}`)
@@ -20,7 +19,7 @@ const Item = ({ title, price, pictureURL, stock })  => {
                                 <Card.Text>
                                     <strong>${price}</strong>
                                 </Card.Text>
-                                <ItemCount stock={stock} initial={1} onAdd={onAdd} />                   
+                                <Button variant="primary" >Ver más</Button>              
                             </Card.Body>
                         </Card>
                     </Col>                 
