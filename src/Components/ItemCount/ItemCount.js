@@ -38,7 +38,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
             <hr />
 
-            <Button variant="primary" onClick={() => onAdd(count)}>Ver más</Button>
+            <Button variant="primary" onClick={() => onAdd(count)}>Agregar al carrito</Button>
 
         </div>
     )
