@@ -1,11 +1,10 @@
 import React from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
+
 const Item = ({ title, price, pictureURL })  => {
 
-    const onAdd = ( cantidad ) =>{
-        console.log(`Cantidad de productos: ${cantidad}`)
-      }
+
 
     return (
         <div>
@@ -19,7 +18,10 @@ const Item = ({ title, price, pictureURL })  => {
                                 <Card.Text>
                                     <strong>${price}</strong>
                                 </Card.Text>
-                                <Button variant="primary" >Ver más</Button>              
+                            
+                                 <Button variant="primary">Ver más</Button>
+                    
+                                              
                             </Card.Body>
                         </Card>
                     </Col>                 

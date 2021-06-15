@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 
 const ItemCount = ({ stock, initial, onAdd }) => {
+    
 
     const INITIAL_COUNT = initial || 1
     const STOCKEADO = stock || 10
@@ -38,7 +39,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
             <hr />
 
-            <Button variant="primary" onClick={() => onAdd(count)}>Agregar al carrito</Button>
+            <Button variant="primary">Agregar al carrito</Button>
 
         </div>
     )

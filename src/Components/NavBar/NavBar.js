@@ -7,7 +7,7 @@ function NavBar() {
     return (
         <>
             <Navbar bg="light" className="justify-content-around">
-                <Navbar.Brand href="#">
+                <Navbar.Brand href="/">
                     <h1 id="Brand">LeTul</h1>
                 </Navbar.Brand>
                 <Form inline>
