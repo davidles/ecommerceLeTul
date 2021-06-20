@@ -1,27 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import ProductsList from '../ProductsList/ProductsList'
 import ItemList from '../ItemList/ItemList'
 
+import './ItemListContainer.css'
+
 function ItemListContainer() {
 
-    const [ products, setProducts ] = useState([])
+    const {category} = useParams()
 
-    const task = new Promise((resolve, reject) =>{
-        setTimeout(() =>{
-            resolve(ProductsList)
-        }, 2000)
-    })
+    const[prodList, setProdList] = useState([]) 
 
-    task.then(
-        data => {
-            setProducts(data)          
+       useEffect(() => {
+            obtenerDatos()         
+    }, [category]) 
+    
+    const obtenerDatos =  () => {
+        if(!category){
+            setProdList(ProductsList)
+        }else{            
+            let getCategory = ProductsList.filter(x => x.category === category)            
+            setProdList(getCategory)
         }
-    )
+        
+    }     
+   
 
     return (
         <div>
-            <h2>Catálogo de productos</h2>
-            <ItemList items={ products }/>
+            <h2 className="title">Catálogo de {category || "Productos"}</h2>
+            <ItemList items={ prodList }/>
         </div>
     )
 }

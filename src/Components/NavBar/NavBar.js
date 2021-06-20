@@ -11,7 +11,7 @@ function NavBar() {
                     <h1 id="Brand">LeTul</h1>
                 </Navbar.Brand>
                 <Form inline>
-                    <FormControl type="text" placeholder="Search..." className="mr-sm-2"/>
+                    <FormControl type="text" placeholder="Search..." className="mr-sm-2" />
                     <Button className="btn btn-info">Search</Button>
                 </Form>
                 <Navbar>
@@ -25,20 +25,19 @@ function NavBar() {
             </Navbar>
             <Navbar bg="dark" variant="dark" expand="lg" className="justify-content-center">
                 <Nav className="md-lg">
-                    <Nav.Link href="#" className="ItemNav">Más vendidos</Nav.Link>
-                    <Nav.Link href="#" className="ItemNav">Ofertas</Nav.Link>
+                    <Nav.Link href="/" className="ItemNav">Home</Nav.Link>
                     <NavDropdown title="Categorias" id="basic-nav-dropdown" className="ItemNav">
-                        <NavDropdown.Item href="#">
-                            <p>Cremas</p>
+                        <NavDropdown.Item href={`/categories/cuidados`}>
+                            <p>Cuidados</p>
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#">
-                            <p>Óleos</p>
+                        <NavDropdown.Item href={`/categories/relajacion`}>
+                            <p>relajacion</p>
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#">
-                            <p>Fragancias</p>
+                        <NavDropdown.Item href={`/categories/dermo-cosmeticos`}>
+                            <p>Dermo-Cosméticos</p>
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#">
+                        <NavDropdown.Item href={`/`}>
                             <p>Todos</p>
                         </NavDropdown.Item>
                     </NavDropdown>

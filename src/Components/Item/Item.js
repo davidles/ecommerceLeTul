@@ -1,26 +1,26 @@
 import React from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 
+import './Item.css'
 
-const Item = ({ title, price, pictureURL })  => {
-
-
+const Item = ({ id, title, price, pictureURL, category })  => {
 
     return (
         <div>
             <Container>
                 <Row className="justify-content-md-center Cards">
                     <Col xs lg="auto">
-                        <Card style={{ width: '18rem' }}>
+                        <Card style={{ width: '18rem' }} className="cards">
                             <Card.Img variant="top" src={pictureURL} />                           
                             <Card.Body>
                                 <Card.Title>{title}</Card.Title>
                                 <Card.Text>
                                     <strong>${price}</strong>
                                 </Card.Text>
-                            
+                                <Link exact to ={`/item/${title}`}>
                                  <Button variant="primary">Ver más</Button>
-                    
+                                </Link>
                                               
                             </Card.Body>
                         </Card>

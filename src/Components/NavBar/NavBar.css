@@ -12,3 +12,8 @@
 .fas{
     font-size: 25px;
 }
+
+.selected{
+    background: blanchedalmond;
+    color: black;
+}

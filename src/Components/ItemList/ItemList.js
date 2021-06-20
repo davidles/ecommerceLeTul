@@ -15,7 +15,7 @@ const ItemList = ({ items }) => {
                             return (
 
                                 <Col xs lg="auto">
-                                    <Item key={item.id} title={item.title} price={item.price} pictureURL={item.pictureURL} stock={item.stock}/>
+                                    <Item key={item.id} id={item.id} title={item.title} category={item.category} price={item.price} pictureURL={item.pictureURL} stock={item.stock}/>
                                 </Col>
 
 
