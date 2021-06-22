@@ -18,7 +18,7 @@ const Item = ({ id, title, price, pictureURL, category })  => {
                                 <Card.Text>
                                     <strong>${price}</strong>
                                 </Card.Text>
-                                <Link exact to ={`/item/${title}`}>
+                                <Link exact to ={`/item/${id}`}>
                                  <Button variant="primary">Ver más</Button>
                                 </Link>
                                               

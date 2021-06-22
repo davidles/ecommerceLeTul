@@ -5,13 +5,13 @@ import ItemDetail from '../ItemDetail/ItemDetail'
 
 function ItemListContainer() {
 
-    const { title } = useParams()
+    const { id } = useParams()
 
     const [ item, setItem ] = useState([])
     
     const getItems = new Promise((resolve, reject) =>{
         setTimeout(() =>{
-            let info = ProductsList.find((x) => x.title === title)
+            let info = ProductsList.find((x) => x.id === id)
             resolve(info)
         }, 2000)
     })

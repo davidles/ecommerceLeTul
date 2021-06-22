@@ -23,7 +23,7 @@ function NavBar() {
                     </Nav>
                 </Navbar>
             </Navbar>
-            <Navbar bg="dark" variant="dark" expand="lg" className="justify-content-center">
+            <Navbar bg="dark" variant="dark" expand="lg" className="justify-content-center NavBar">
                 <Nav className="md-lg">
                     <Nav.Link href="/" className="ItemNav">Home</Nav.Link>
                     <NavDropdown title="Categorias" id="basic-nav-dropdown" className="ItemNav">

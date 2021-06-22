@@ -4,6 +4,10 @@
     font-size: 3em;
 }
 
+.NavBar{
+    margin-bottom: 1em;
+}
+
 .ItemNav{
     margin: 0 15px;
     text-transform: uppercase;
@@ -13,7 +17,3 @@
     font-size: 25px;
 }
 
-.selected{
-    background: blanchedalmond;
-    color: black;
-}
