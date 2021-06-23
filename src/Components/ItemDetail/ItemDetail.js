@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import ProductsList from '../ProductsList/ProductsList'
 import ItemDetail from '../ItemDetail/ItemDetail'
 
-function ItemListContainer() {
+function ItemDetailContainer() {
 
     const { id } = useParams()
 
@@ -30,4 +30,4 @@ function ItemListContainer() {
     )
 }
 
-export default ItemListContainer
+export default ItemDetailContainer
