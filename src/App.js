@@ -1,5 +1,8 @@
 import './App.css';
 
+/*Context*/
+import {CartContextProvider} from './Context/CartContext';
+
 /*Componentes*/
 import NavBar from './Components/NavBar/NavBar'
 import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
@@ -14,8 +17,9 @@ function App() {
 
 
   return (
-    <div className="App">
-      
+    <div className="App">  
+      <CartContextProvider>
+
       <BrowserRouter>
         <NavBar/>
           <Switch>
@@ -33,6 +37,8 @@ function App() {
             </Route>
           </Switch>
       </BrowserRouter>
+
+      </CartContextProvider>
       
       
      

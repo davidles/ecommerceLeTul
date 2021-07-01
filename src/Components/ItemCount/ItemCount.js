@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
+import CartContext from '../../Context/CartContext'
 
 const ItemCount = ({ stock, initial, onAdd }) => {
 
+    const {count, setCount } = useContext(CartContext)
 
     const INITIAL_COUNT = initial || 1
     const STOCKEADO = stock || 10
 
-
-    const [count, setCount] = useState(INITIAL_COUNT)
 
 
     const sumarProductos = () => {
@@ -38,9 +38,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
             <hr />
 
-            <Button variant="primary" onClick={() => {
-                onAdd(count);
-            }}>Agregar al carrito</Button>
+            <Button variant="primary" onClick={()=>onAdd(count)}>Agregar al carrito</Button>
 
 
         </div>
