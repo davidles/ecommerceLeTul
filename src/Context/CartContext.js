@@ -9,36 +9,41 @@ import React, { useState } from 'react'
      const [product, setProduct] = useState([]);
      const [count, setCount] = useState(1);
 
-     const isInCart = cart.find( x => x.producto.id === product.id)
+    
 
 
-     function addItem(item, quantity){
-
+     const addItem = (item, quantity) =>{
+      const isInCart = cart.find( x => x.producto.id === product.id)
+    if (isInCart) {
+     
+        let nuevaCant = isInCart.cantidad + count;
+        let posicion = cart.indexOf(isInCart);
+        cart[posicion].cantidad = nuevaCant;
+        setCart(cart);
         
+      } else {
+        setCart([...cart, { producto: item, cantidad: quantity }]);
+      }
+      
+     }
+ 
 
-        if (isInCart) {
-            let nuevaCant = isInCart.cantidad + count;
-            let posicion = cart.indexOf(isInCart);
-            cart[posicion].cantidad = nuevaCant;
-            setCart(cart);
-            
-          } else {
-            setCart([...cart, { producto: item, cantidad: quantity }]);
-          }
-          console.log(cart)
+
+    function removeItem(){
+      const isInCart = cart.find( x => x.producto.id === product.id)
+      if (isInCart) {
+        let posicion = cart.indexOf(isInCart);
+        cart.splice( posicion, 1);
+        setCart([...cart]);
+      }
         
-
-    }
-
-    function removeItem(itemId){
-        console.log("itemId")
     }
 
     function clear(){
-        console.log("limpiar")
+        setCart(initialState)
     }
 
-    
+    console.log(cart)
 
     return(
         <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear  }}>
@@ -54,21 +59,3 @@ import React, { useState } from 'react'
 export default CartContext;
 
 
-/***
- *        
-    function addItem(item, quantity){
-        const isInCart = cart.find( x => x.producto.id === product.id)
-
-        if (isInCart) {
-            let nuevaCant = isInCart.quantity + count;
-            let posicion = cart.indexOf(isInCart);
-            cart[posicion].cantidad = nuevaCant;
-            setCart(cart);
-            
-          } else {
-            setCart([...cart, { producto: item, cantidad: quantity }]);
-          }
-          console.log(cart)
-
-    }
- */

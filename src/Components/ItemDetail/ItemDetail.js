@@ -6,7 +6,7 @@ import CartContext from '../../Context/CartContext';
 
 const ItemDetail = () => {
 
-    const { product, count, addItem } = useContext(CartContext)
+    const { product, count, addItem, removeItem, clear } = useContext(CartContext)
 
 
     const [ showButton, setShowButton] = useState(true)
@@ -35,10 +35,17 @@ const ItemDetail = () => {
                         <p>Precio ${product.price}</p>
                         {
                             showButton ? <ItemCount onAdd={onAdd}/> : <Link exact to ={`/cart`}>
-                            <Button variant="primary" onClick={ addItem(product, count)} >Terminar la compra</Button>
+                            <Button variant="primary" onClick={x => addItem(product, count)} >Terminar la compra</Button>
                            </Link>
                         }
-                        
+                        <hr/>
+                        <Button variant="primary" onClick={x => removeItem()}>
+                            Eliminar producto
+                        </Button>
+                        <hr/>
+                        <Button variant="primary" onClick={x => clear()}>
+                            Limpiar
+                        </Button>
                          
                     </Card.Body>              
                 </Col>
