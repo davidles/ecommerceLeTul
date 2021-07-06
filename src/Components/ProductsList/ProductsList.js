@@ -1,6 +1,6 @@
 const ProductsList = [
     {
-        id:'1',
+        id:"1",
         title:'Aceite Esencial de Eucalipto',
         category: "cuidados",
         description: "Posee un aroma inequívoco y personal. Alcanforado, fresco y vivaz, el Aceite Esencial de Eucalipto, ayuda a prepararse para los cambios bruscos de estación, los inviernos fríos y para los estados gripales que éstos traen consigo. Respirar libremente ya no será un problema. ",
@@ -9,7 +9,7 @@ const ProductsList = [
         stock: 20
     },
     {
-        id:'2',
+        id:"2",
         title:'Aceite Esencial de Manzanilla',
         category: "cuidados",
         description: "Más de una vez sufrimos las consecuencias de nuestras tentaciones cuando nos atracamos con comidas deliciosas o probamos alimentos nuevos y desconocidos que pueden hacer estragos en nuestro estómago. La manzanilla reconforta estos momentos combinando sus bondades con efectos calmantes y relajantes. Su aroma dulce, frutal y herbáceo es el colaborador #1 en todo hogar donde hay niños y adultos. Puedes utilizar este aceite con los Vehiculares Aromablends para diseñar tu propia sinergia de aromaterapia y lograr tu estado de ánimo ideal. Simplemente mezcla unas gotitas de uno o varios Aceites Esenciales Just dentro del vehicular que más te guste y disfruta del poder de la naturaleza.",
@@ -18,7 +18,7 @@ const ProductsList = [
         stock: 20
     },
     {
-        id:'3',
+        id:"3",
         title:'Aceite Esencial de Lavanda',
         category: "relajacion",
         description: "Con un aroma floral, fresco y con un dejo herbal, el Aceite Esencial de Lavanda es tan versátil como útil en cualquier hogar. Su aroma calma y aquieta los nervios, la ansiedad y el estrés ayudando a conciliar el sueño cuando resulta difícil bajar revoluciones. Es el aceite ideal para tener en el botiquín de primeros auxilios a la hora de reconfortar la piel en casos de quemaduras, eczemas y alergias.",

@@ -1,59 +1,79 @@
 import React, { useState } from 'react'
 
- const CartContext = React.createContext({})
- 
-
- export function CartContextProvider({children}){
-     const initialState = []
-     const [cart, setCart] = useState(initialState);
-     const [product, setProduct] = useState([]);
-     const [count, setCount] = useState(1);
-
-    
+const CartContext = React.createContext({})
 
 
-     const addItem = (item, quantity) =>{
-      const isInCart = cart.find( x => x.producto.id === product.id)
+export function CartContextProvider({ children }) {
+  const initialState = []
+  const [cart, setCart] = useState(initialState);
+  const [product, setProduct] = useState([]);
+  const [count, setCount] = useState(1);
+  const [ items, setItems ] = useState([])
+  const [ TotalCosto, updateTotalCosto] = useState([])
+
+  const sumaItems = items.reduce((acumulado, total) => acumulado + total, 0)
+
+  const subtotal = (precio, cantidad) => {
+    const totalProducto = precio * cantidad
+
+    updateTotalCosto([...TotalCosto, totalProducto])
+
+    return totalProducto
+}
+
+
+
+  const addItem = (item, quantity) => {
+    const isInCart = cart.find(x => x.producto.id === product.id)
     if (isInCart) {
-     
-        let nuevaCant = isInCart.cantidad + count;
-        let posicion = cart.indexOf(isInCart);
-        cart[posicion].cantidad = nuevaCant;
-        setCart(cart);
-        
-      } else {
-        setCart([...cart, { producto: item, cantidad: quantity }]);
-      }
+
+      let nuevaCant = isInCart.cantidad + count;
+      let posicion = cart.indexOf(isInCart);
+      cart[posicion].cantidad = nuevaCant;
+      console.log(posicion)
+    
+      setCart(cart);
+
+   
+      setItems([...items, count]) 
+
+    } else {
       
-     }
- 
+      setCart([...cart, { producto: item, cantidad: quantity }]);
+      setItems([...items, count])  
 
-
-    function removeItem(){
-      const isInCart = cart.find( x => x.producto.id === product.id)
-      if (isInCart) {
-        let posicion = cart.indexOf(isInCart);
-        cart.splice( posicion, 1);
-        setCart([...cart]);
-      }
-        
     }
+  }
 
-    function clear(){
-        setCart(initialState)
-    }
+  function removeItem(itemId) {
+    const isInCart = cart.find(x => x.producto.id === itemId)
+    let posicion = cart.indexOf(isInCart)
+    cart.splice(posicion, 1)
+    items.splice(posicion, 1)
+    setCart([...cart])
+    setItems([...items])
 
-    console.log(cart)
+  }
 
-    return(
-        <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear  }}>
-            {children}
-        </CartContext.Provider>
-    )
+  function clear() {
+    setCart(initialState)
+  }
 
 
 
- }
+  console.log(cart)
+  console.log(items)
+  console.log(sumaItems)
+
+  return (
+    <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear, items, setItems, sumaItems, subtotal }}>
+      {children}
+    </CartContext.Provider>
+  )
+
+
+
+}
 
 
 export default CartContext;

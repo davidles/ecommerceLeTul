@@ -38,14 +38,6 @@ const ItemDetail = () => {
                             <Button variant="primary" onClick={x => addItem(product, count)} >Terminar la compra</Button>
                            </Link>
                         }
-                        <hr/>
-                        <Button variant="primary" onClick={x => removeItem()}>
-                            Eliminar producto
-                        </Button>
-                        <hr/>
-                        <Button variant="primary" onClick={x => clear()}>
-                            Limpiar
-                        </Button>
                          
                     </Card.Body>              
                 </Col>

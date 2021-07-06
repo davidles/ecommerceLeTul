@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Row, Col } from 'react-bootstrap'
 import CartContext from '../../Context/CartContext'
 
 const ItemCount = ({ stock, initial, onAdd }) => {
@@ -28,13 +28,26 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         <div>
 
             <small> Stock: {STOCKEADO - count} </small>
-            <p>{count}</p>
+            
+            <Row>
+                <Col md={5}>
+                    <Button onClick={() => restarProductos()}
+                    variant="light" disabled={count <= 1}>-</Button>
+                </Col>
+                <Col md={2}>
+                    <p>{count}</p>
+                </Col>
+                <Col md={5}>
+                    <Button onClick={() => sumarProductos()}
+                        variant="light">+</Button>
+                </Col>
+            </Row>
+            
 
-            <Button onClick={() => restarProductos()}
-                variant="light" disabled={count <= 1}>-</Button>
+            
+                
 
-            <Button onClick={() => sumarProductos()}
-                variant="light">+</Button>
+            
 
             <hr />
 
