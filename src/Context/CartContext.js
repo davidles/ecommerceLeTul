@@ -30,12 +30,12 @@ export function CartContextProvider({ children }) {
       let nuevaCant = isInCart.cantidad + count;
       let posicion = cart.indexOf(isInCart);
       cart[posicion].cantidad = nuevaCant;
-      console.log(posicion)
+      console.log(nuevaCant)
     
       setCart(cart);
 
-   
-      setItems([...items, count]) 
+      setItems([nuevaCant])
+    
 
     } else {
       
@@ -61,9 +61,9 @@ export function CartContextProvider({ children }) {
 
 
 
-  console.log(cart)
-  console.log(items)
-  console.log(sumaItems)
+  // console.log(cart)
+  // console.log(items)
+  // console.log(sumaItems)
 
   return (
     <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear, items, setItems, sumaItems, subtotal }}>

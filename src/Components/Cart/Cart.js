@@ -41,7 +41,7 @@ const Cart = () => {
                         {
                             productSelected.map(({ producto, cantidad }) => (
 
-                                <tbody key={producto.id} >
+                                <tbody key={producto.id}>
                                     <tr>
                                         <td>{producto.title}</td>
                                         <td>${producto.price}</td>
