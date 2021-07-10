@@ -4,7 +4,7 @@ import ProductsList from '../ProductsList/ProductsList'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import CartContext from '../../Context/CartContext'
 
-function ItemDetailContainer() {
+function ItemDetailContainer({onAdd}) {
 
     const { product, setProduct } = useContext(CartContext)
 
@@ -22,7 +22,7 @@ function ItemDetailContainer() {
     return (
         <div>
             <div className="Cards-container">
-             <ItemDetail product={product}></ItemDetail>
+             <ItemDetail product={product} onAdd={onAdd} />
             </div>
         </div>
     )

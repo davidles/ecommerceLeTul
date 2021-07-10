@@ -4,7 +4,7 @@ import CartContext from '../../Context/CartContext'
 
 const ItemCount = ({ stock, initial, onAdd }) => {
 
-    const {count, setCount } = useContext(CartContext)
+    const { count, setCount } = useContext(CartContext)
 
     const INITIAL_COUNT = initial || 1
     const STOCKEADO = stock || 10
@@ -38,7 +38,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
                     <p>{count}</p>
                 </Col>
                 <Col md={5}>
-                    <Button onClick={() => sumarProductos()}
+                    <Button onClick={() => sumarProductos(count)}
                         variant="light">+</Button>
                 </Col>
             </Row>

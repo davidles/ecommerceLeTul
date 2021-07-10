@@ -1,24 +1,38 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CartContext from '../../Context/CartContext'
 import { Table, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import CartWidget from '../CartWidget/CartWidget'
 
-const Cart = () => {
+const Cart = ({ onAdd }) => {
 
-    const { product, setProduct, cart, items, setItems, removeItem, clear, count, sumaItems } = useContext(CartContext)
+    const {  cart, setCart, addItem, removeItem, clear } = useContext(CartContext)
 
-    const productSelected = cart.map(prodSelected => {
-        const { producto, cantidad } = prodSelected
+    const subtotal = (precio, cantidad) => precio * cantidad
 
-        return { producto, cantidad }
-    })
 
-    const subtotal = (precio, cantidad) => precio*cantidad
+    
+
+    let totalPrecio=0
+    let totalItem=0
+
+    
+
+    const styles = {
+        totalesPrecio: {
+          background: 'green',
+          color:'white'
+        },
+        totalesItems: {
+            background: 'grey',
+            color:'black'
+          }
+      };
+
 
     return (
         <div>
             <h2>Cart</h2>
-
             {
                 (cart.length < 1)
                     ? <Link to="/">
@@ -39,28 +53,40 @@ const Cart = () => {
 
 
                         {
-                            productSelected.map(({ producto, cantidad }) => (
+                            cart.map(({ producto, cantidad }) => {
+                                totalPrecio += subtotal(producto.price, cantidad)
+                                 totalItem += cantidad    
 
-                                <tbody key={producto.id}>
-                                    <tr>
-                                        <td>{producto.title}</td>
-                                        <td>${producto.price}</td>
-                                        <td>{cantidad}</td>
-                                        <td>${subtotal(producto.price, cantidad)}</td>
-                                        <td>
-                                            <Button variant="danger" onClick={() => removeItem(producto.id)}>Eliminar</Button>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                return(
 
-                            ))
+                                    <tbody key={producto.id} >
+                                        <tr>
+                                            <td>{producto.title}</td>
+                                            <td>${producto.price}</td>
+                                            <td>
+                                            {cantidad} 
+                                            </td>
+                                            <td>${subtotal(producto.price, cantidad)}</td>
+                                            <td>
+                                                <Link exact to={`/item/${producto.id}`}><Button>Add</Button></Link>
+                                                <Button variant="danger" onClick={() => removeItem(producto.id)}>Delete</Button>
+                                            </td>
+                                            
+                                        </tr>
+                                    </tbody>
+    
+                                )
+                            })
+                        }
+                        {
+                            <tbody>
+                                <tr>
+                                    <td style={styles.totalesItems}>Total de productos: {totalItem}</td>
+                                    <td style={styles.totalesPrecio}>Total de productos: ${totalPrecio}</td>
+                                </tr>
+                            </tbody>
 
                         }
-                        < tbody >
-                            <tr>
-                                <td>Total de productos: {sumaItems}</td>
-                            </tr>
-                        </tbody>
                     </Table>
 
 
@@ -104,3 +130,36 @@ export default Cart
 
             </Table>
  */
+
+
+
+
+            /***
+             * 
+             * <tbody key={producto.id} >
+                                    <tr>
+                                        <td>{producto.title}</td>
+                                        <td>${producto.price}</td>
+                                        <td>{cantidad}</td>
+                                        <td>${subtotal(producto.price, cantidad)}</td>
+                                        <td>
+                                            <Button variant="danger" onClick={() => removeItem(producto.id)}>Eliminar</Button>
+                                        </td>
+                                        <td>
+                                            {suma(cantidad)}
+                                        </td>
+                                    </tr>
+                                </tbody>
+             */
+
+
+                                /***
+                                 * 
+                                 * 
+                                 *             const isInCart = cart.find(x => x.producto.id === producto.id)
+                                let posicion = cart.indexOf(isInCart);
+                                console.log("posicion "+ posicion)
+                                const cantidades = cart.map(x => cart[posicion].cantidad)
+                                const resultado = suma(cantidades)
+                                console.log(resultado)
+                                 */

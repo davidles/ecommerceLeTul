@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import CartContext from '../../Context/CartContext'
 
 
-function CartWidget() {
+function CartWidget({ onAdd }) {
 
-    const { sumaItems } = useContext(CartContext)
+    const { cart } = useContext(CartContext)
 
     const styles = {
         items: {
@@ -20,17 +20,47 @@ function CartWidget() {
         }
       };
 
+      let cantidades = 0
+
+ 
+
+   
+
+
     return (
         <div>
             <i className="fas fa-shopping-bag" style={styles.widget}>
                 {
-                    (sumaItems >= 1)
-                    ? <small style={styles.items}>{ sumaItems }</small>
-                    : <small></small>
+                    
+                        cart.map(({ cantidad }) =>{
+                            
+                            console.log(cantidad)
+                            cantidades += cantidad
+
+                          
+                        })
+                   
                 }
+
+                
+                <small style={styles.items}>{cantidades}</small>
+                
             </i>
         </div>
     )
+
+   
 }
 
 export default CartWidget
+
+
+/****
+ * {
+                    (cantidades >= 1)
+                    ?<small style={styles.items}>{cantidades}</small>  
+                    : <small></small>
+
+                      
+                }
+ */

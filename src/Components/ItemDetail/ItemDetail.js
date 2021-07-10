@@ -6,16 +6,19 @@ import CartContext from '../../Context/CartContext';
 
 const ItemDetail = () => {
 
-    const { product, count, addItem, removeItem, clear } = useContext(CartContext)
-
+  const { product, count, addItem, removeItem, clear } = useContext(CartContext)
+   
 
     const [ showButton, setShowButton] = useState(true)
 
+    let suma = 0
     const onAdd = (quantityToAdd) =>{
         setShowButton(false)
-        let cantidad = quantityToAdd
-        let producto = product.title
-        console.log("Producto: "+ producto + ", Cantidad: "+ cantidad )
+        const itemSelected = {product, quantityToAdd}
+
+      
+
+        return {itemSelected}
     }
 
     
