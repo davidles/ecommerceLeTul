@@ -8,10 +8,11 @@ export function CartContextProvider({ children }) {
   const [cart, setCart] = useState(initialState);
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(1);
+  const [ cartItems, setCartItems ] = useState()
 
- 
- 
 
+
+  
 
 const addItem = (item, quantity) => {
  const isInCart = cart.find(x => x.producto.id === product.id)
@@ -31,6 +32,7 @@ const addItem = (item, quantity) => {
     
     setCart([...cart, { producto: item, cantidad: quantity }]);
 
+
   }
 }
 
@@ -39,7 +41,7 @@ const addItem = (item, quantity) => {
     let posicion = cart.indexOf(isInCart)
     cart.splice(posicion, 1)
     setCart([...cart])
-
+  
 
   }
 
@@ -52,7 +54,7 @@ console.log(cart)
 
 
   return (
-    <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear }}>
+    <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear, cartItems, setCartItems }}>
       {children}
     </CartContext.Provider>
   )

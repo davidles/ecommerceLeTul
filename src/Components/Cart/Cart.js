@@ -6,11 +6,11 @@ import CartWidget from '../CartWidget/CartWidget'
 
 const Cart = ({ onAdd }) => {
 
-    const {  cart, setCart, addItem, removeItem, clear } = useContext(CartContext)
+    const {  cart, setCart, addItem, removeItem, clear, cartItems, setCartItems } = useContext(CartContext)
 
     const subtotal = (precio, cantidad) => precio * cantidad
 
-
+    
     
 
     let totalPrecio=0
@@ -56,7 +56,8 @@ const Cart = ({ onAdd }) => {
                             cart.map(({ producto, cantidad }) => {
                                 totalPrecio += subtotal(producto.price, cantidad)
                                  totalItem += cantidad    
-
+                                    setCartItems( totalItem )
+                                    console.log(cartItems)
                                 return(
 
                                     <tbody key={producto.id} >

@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import CartContext from '../../Context/CartContext'
 
 
-function CartWidget({ onAdd }) {
+function CartWidget() {
 
-    const { cart } = useContext(CartContext)
+    const { cart, cartItems, setCartItems } = useContext(CartContext)
 
     const styles = {
         items: {
@@ -34,16 +34,20 @@ function CartWidget({ onAdd }) {
                     
                         cart.map(({ cantidad }) =>{
                             
-                            console.log(cantidad)
+                            console.log(cart.length)
                             cantidades += cantidad
-
-                          
+                            setCartItems(cantidades)
+                          return 
                         })
                    
                 }
 
+                {
+                    (cartItems >= 1 && cart.length >= 1)
+                    ? <small style={styles.items}>{cartItems}</small>
+                    : <small></small>
+                }
                 
-                <small style={styles.items}>{cantidades}</small>
                 
             </i>
         </div>
