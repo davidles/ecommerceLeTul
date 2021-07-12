@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import ProductsList from '../ProductsList/ProductsList'
-import ItemDetail from '../ItemDetail/ItemDetail'
-import CartContext from '../../Context/CartContext'
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ProductsList from "../ProductsList/ProductsList";
+import ItemDetail from "../ItemDetail/ItemDetail";
+import CartContext from "../../Context/CartContext";
+import { getFirestore } from "../../factory/index";
 
-function ItemDetailContainer({onAdd}) {
-
-    const { product, setProduct } = useContext(CartContext)
+function ItemDetailContainer({ onAdd }) {
+  const { product, setProduct } = useContext(CartContext)
 
     const { id } = useParams()
 
@@ -28,20 +28,4 @@ function ItemDetailContainer({onAdd}) {
     )
 }
 
-export default ItemDetailContainer
-
-/***
- *     const getItems = new Promise((resolve, reject) =>{
-        setTimeout(() =>{
-            let info = ProductsList.find((x) => x.id === 1)
-            resolve( info )
-        }, 2000)
-    })
-
-    getItems.then(
-        data => {
-            setProduct(data)
-            console.log(product)          
-        }
-    )
- */
+export default ItemDetailContainer;

@@ -30,17 +30,6 @@ function CartWidget() {
     return (
         <div>
             <i className="fas fa-shopping-bag" style={styles.widget}>
-                {
-                    
-                        cart.map(({ cantidad }) =>{
-                            
-                            console.log(cart.length)
-                            cantidades += cantidad
-                            setCartItems(cantidades)
-                          return 
-                        })
-                   
-                }
 
                 {
                     (cartItems >= 1 && cart.length >= 1)
