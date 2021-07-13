@@ -2,7 +2,7 @@ import React from 'react'
 import Item from '../Item/Item'
 import { Container, Row, Col } from 'react-bootstrap';
 
-const ItemList = ({ items }) => {
+const ItemList = ({ category }) => {
 
  
 
@@ -11,7 +11,7 @@ const ItemList = ({ items }) => {
             <Container>
                 <Row className="justify-content-md-center Cards">
                     {
-                        items.map((item, i) => {
+                        category.map((item, i) => {
                             return (
 
                                 <Col xs lg="auto">

@@ -7,28 +7,64 @@ import './ItemListContainer.css'
 
 function ItemListContainer() {
 
-  const {category} = useParams()
+    const { category } = useParams();
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-  const[prodList, setProdList] = useState([]) 
-
-     useEffect(() => {
-          obtenerDatos()         
-  }, [category]) 
-  
-  const obtenerDatos =  () => {
+    const obtenerDatos =  () => {
       if(!category){
-          setProdList(ProductsList)
+        const db = getFirestore();
+        const itemCollection = db.collection('items');
+        //  const categoryId = itemCollection.where('category', '==', category)
+         itemCollection
+          .get()
+          .then(querySnapshot => {
+            if (querySnapshot.size === 0) {
+              console.log('no results');
+              setLoading(false);
+              return;
+            }
+            setCategories(querySnapshot.docs.map(doc => doc.data()));
+            setLoading(false);
+          })
+          .catch(error => {
+            console.log(error);
+            setLoading(false);
+          });
       }else{            
-          let getCategory = ProductsList.filter(x => x.category === category)            
-          setProdList(getCategory)
+        const db = getFirestore();
+        const itemCollection = db.collection('items');
+          const categoryId = itemCollection.where('category', '==', category)
+          categoryId
+          .get()
+          .then(querySnapshot => {
+            if (querySnapshot.size === 0) {
+              console.log('no results');
+              setLoading(false);
+              return;
+            }
+            setCategories(querySnapshot.docs.map(doc => doc.data()));
+            setLoading(false);
+          })
+          .catch(error => {
+            console.log(error);
+            setLoading(false);
+          });
       }
       
-  }     
+  } 
+
+    useEffect(() => {
+      
+      obtenerDatos()
+
+
+  }, []);
 
     return (
         <div>
             <h2 className="title">Catálogo de {category || "Productos"}</h2>
-            <ItemList items={ prodList  }/>
+            <ItemList category={ categories }/>
         </div>
     )
 }

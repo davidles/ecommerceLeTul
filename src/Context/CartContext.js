@@ -9,7 +9,7 @@ export function CartContextProvider({ children }) {
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(1);
   const [ cartItems, setCartItems ] = useState()
-
+  const [items, setItems] = useState([]);
 
 
   
@@ -49,12 +49,12 @@ const addItem = (item, quantity) => {
     setCart(initialState)
   }
 
-console.log(cart)
+console.log(items)
 
 
 
   return (
-    <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear, cartItems, setCartItems }}>
+    <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear, cartItems, setCartItems, items, setItems }}>
       {children}
     </CartContext.Provider>
   )
