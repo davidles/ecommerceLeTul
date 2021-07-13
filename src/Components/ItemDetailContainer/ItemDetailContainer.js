@@ -10,28 +10,28 @@ function ItemDetailContainer({ onAdd }) {
 
  const { id } = useParams()
 
-  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {   
- 
+    const itemID = 'I3sURulyGYHOhj5YT8ev'
     const db = getFirestore();
     const itemCollection = db.collection("items");
-    const item = itemCollection.doc('espLMxFuDEfMbwZkTA6l');
+    const item = itemCollection.doc(itemID);
     item
       .get()
-      .then((doc) => {
+      .then(doc => {
         if (!doc.exists) {
           console.log("Item no encontrado");
-          setLoading(false);
+     
           return;
         }
         console.log("Item encontrado");
-        setProduct([{ id: doc.id, ...doc.data() }]);
-        setLoading(false);
+        setItems([{ id: doc.id, ...doc.data() }]);
+
       })
       .catch((error) => {
         console.log(error);
-        setLoading(false);
+  
       });
   }, []);
 
@@ -40,7 +40,8 @@ console.log(items)
   return (
     <div>
       <div className="Cards-container">
-      <ItemDetail items={product} onAdd={onAdd} />
+      <ItemDetail product={items} onAdd={onAdd} />
+      
         
       </div>
     </div>

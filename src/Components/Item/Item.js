@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import CartContext from '../../Context/CartContext';
 
 import './Item.css'
 
-const Item = ({ id, title, price, pictureURL, category })  => {
+const Item = ({ id, title, price, pictureURL, category,stock })  => {
+
+   
 
     return (
         <div>

@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Item from '../Item/Item'
 import { Container, Row, Col } from 'react-bootstrap';
+import CartContext from '../../Context/CartContext';
 
-const ItemList = ({ category }) => {
-
- 
+const ItemList = () => {
+    const { categories } = useContext(CartContext)
+ console.log(categories)
 
     return (
         <div>
             <Container>
                 <Row className="justify-content-md-center Cards">
                     {
-                        category.map((item, i) => {
+                        categories.map((item, i) => {
+                            console.log(item.id)
                             return (
 
                                 <Col xs lg="auto">

@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import ProductsList from '../ProductsList/ProductsList'
 import ItemList from '../ItemList/ItemList'
 import { getFirestore } from "../../factory/index";
 import './ItemListContainer.css'
+import CartContext from '../../Context/CartContext';
+
 
 function ItemListContainer() {
 
     const { category } = useParams();
-    const [categories, setCategories] = useState([]);
+
+    const { categories, setCategories } = useContext(CartContext)
+    
     const [loading, setLoading] = useState(true);
 
     const obtenerDatos =  () => {
       if(!category){
         const db = getFirestore();
         const itemCollection = db.collection('items');
-        //  const categoryId = itemCollection.where('category', '==', category)
          itemCollection
           .get()
           .then(querySnapshot => {
@@ -44,6 +47,7 @@ function ItemListContainer() {
               return;
             }
             setCategories(querySnapshot.docs.map(doc => doc.data()));
+            console.log(categories);
             setLoading(false);
           })
           .catch(error => {
@@ -58,13 +62,13 @@ function ItemListContainer() {
       
       obtenerDatos()
 
-
+      
   }, []);
 
     return (
         <div>
             <h2 className="title">Catálogo de {category || "Productos"}</h2>
-            <ItemList category={ categories }/>
+            <ItemList categories={ categories }/>
         </div>
     )
 }
