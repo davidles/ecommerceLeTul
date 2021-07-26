@@ -12,7 +12,8 @@ function ItemListContainer() {
     const { category } = useParams();
 
     const { categories, setCategories } = useContext(CartContext)
-    
+
+    const ele={}
     const [loading, setLoading] = useState(true);
 
     const obtenerDatos =  () => {
@@ -27,8 +28,17 @@ function ItemListContainer() {
               setLoading(false);
               return;
             }
-            setCategories(querySnapshot.docs.map(doc => doc.data()));
-            setLoading(false);
+   
+            setCategories(querySnapshot.docs.map((doc) => {
+             const elemento = {
+                id: doc.id,
+                ...doc.data()
+              }  
+              console.log(elemento)      
+             return elemento
+            }));
+            
+          
           })
           .catch(error => {
             console.log(error);
@@ -46,8 +56,13 @@ function ItemListContainer() {
               setLoading(false);
               return;
             }
-            setCategories(querySnapshot.docs.map(doc => doc.data()));
-            console.log(categories);
+            setCategories(querySnapshot.docs.map((doc) => {
+              const elemento = {
+                 id: doc.id,
+                 ...doc.data()
+               }      
+              return elemento
+             }));
             setLoading(false);
           })
           .catch(error => {
@@ -68,7 +83,7 @@ function ItemListContainer() {
     return (
         <div>
             <h2 className="title">Catálogo de {category || "Productos"}</h2>
-            <ItemList categories={ categories }/>
+            <ItemList category={categories}/>
         </div>
     )
 }

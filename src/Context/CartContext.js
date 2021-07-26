@@ -12,10 +12,10 @@ export function CartContextProvider({ children }) {
   const [items, setItems] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  
+  const [itemId, setItemId] = useState("")
 
 const addItem = (item, quantity) => {
- const isInCart = cart.find(x => x.producto.id === product.id)
+  const isInCart = cart.find(x => x.producto.id === item.id)
   
   if (isInCart) {
 
@@ -50,10 +50,10 @@ const addItem = (item, quantity) => {
   }
 
 
-
+console.log(product)
 
   return (
-    <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear, cartItems, setCartItems, items, setItems, categories, setCategories }}>
+    <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear, cartItems, setCartItems, items, setItems, categories, setCategories, itemId, setItemId }}>
       {children}
     </CartContext.Provider>
   )
@@ -64,8 +64,3 @@ const addItem = (item, quantity) => {
 
 
 export default CartContext;
-
-
-/***
- *   
- */

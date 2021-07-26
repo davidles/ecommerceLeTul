@@ -13,7 +13,7 @@ function ItemDetailContainer({ onAdd }) {
 
 
   useEffect(() => {   
-    const itemID = 'I3sURulyGYHOhj5YT8ev'
+    const itemID = id
     const db = getFirestore();
     const itemCollection = db.collection("items");
     const item = itemCollection.doc(itemID);
@@ -36,11 +36,11 @@ function ItemDetailContainer({ onAdd }) {
   }, []);
 
   
-console.log(items)
+
   return (
     <div>
       <div className="Cards-container">
-      <ItemDetail product={items} onAdd={onAdd} />
+      <ItemDetail onAdd={onAdd} />
       
         
       </div>

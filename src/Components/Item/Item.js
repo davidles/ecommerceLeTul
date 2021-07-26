@@ -5,7 +5,7 @@ import CartContext from '../../Context/CartContext';
 
 import './Item.css'
 
-const Item = ({ id, title, price, pictureURL, category,stock })  => {
+const Item = ({ id, title, price, pictureURL,  category })  => {
 
    
 
@@ -18,6 +18,9 @@ const Item = ({ id, title, price, pictureURL, category,stock })  => {
                             <Card.Img variant="top" src={pictureURL} />                           
                             <Card.Body>
                                 <Card.Title>{title}</Card.Title>
+                                <Card.Text>
+                                    <p>${category}</p>
+                                </Card.Text>
                                 <Card.Text>
                                     <strong>${price}</strong>
                                 </Card.Text>

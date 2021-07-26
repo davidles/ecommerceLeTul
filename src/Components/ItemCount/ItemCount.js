@@ -6,28 +6,17 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
     const { count, setCount } = useContext(CartContext)
 
-    const INITIAL_COUNT = initial || 1
-    const STOCKEADO = stock || 10
-
-
-
     const sumarProductos = () => {
-        if (count < STOCKEADO) {
-            setCount(count + 1);
-        }
+        setCount(count + 1);
     }
 
     const restarProductos = () => {
-        if (count > INITIAL_COUNT) {
-            setCount(count - 1);
-        }
+        setCount(count - 1);
     }
 
 
     return (
         <div>
-
-            <small> Stock: {STOCKEADO - count} </small>
             
             <Row>
                 <Col md={5}>

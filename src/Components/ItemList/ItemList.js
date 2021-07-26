@@ -5,15 +5,15 @@ import CartContext from '../../Context/CartContext';
 
 const ItemList = () => {
     const { categories } = useContext(CartContext)
- console.log(categories)
+
 
     return (
         <div>
             <Container>
                 <Row className="justify-content-md-center Cards">
                     {
-                        categories.map((item, i) => {
-                            console.log(item.id)
+                        categories.map((item) => {
+         
                             return (
 
                                 <Col xs lg="auto">
