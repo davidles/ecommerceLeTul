@@ -27,6 +27,8 @@ This project is an e-commerce of Just products.
 -Rendering
 -Firebase
 
-### Libraries: Bootstrap-React
+### Libraries: 
+Bootstrap-React
 
-### Database used: Firebase
+### Database used: 
+Firebase
