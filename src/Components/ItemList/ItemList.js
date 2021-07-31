@@ -34,8 +34,3 @@ const ItemList = () => {
 }
 
 export default ItemList
-
-
-/**
- *  <Item key={product.id} title={product.title} price={product.price} pictureURL={product.pictureURL}/>
- */

@@ -6,23 +6,17 @@ import CartContext from '../../Context/CartContext';
 
 const ItemDetail = () => {
 
-    const { product, count, addItem, removeItem, clear, items, setItems } = useContext(CartContext)
+    const { product, count, addItem, items } = useContext(CartContext)
 
 
     const [showButton, setShowButton] = useState(true)
 
-    let suma = 0
     const onAdd = (quantityToAdd) => {
         setShowButton(false)
         const itemSelected = { product, quantityToAdd }
 
         return { itemSelected }
     }
-
-
-
-
-
 
 
     return (

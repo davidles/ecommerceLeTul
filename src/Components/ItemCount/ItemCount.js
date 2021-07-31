@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Button, Row, Col } from 'react-bootstrap'
 import CartContext from '../../Context/CartContext'
 
-const ItemCount = ({ stock, initial, onAdd }) => {
+const ItemCount = ({ onAdd }) => {
 
     const { count, setCount } = useContext(CartContext)
 

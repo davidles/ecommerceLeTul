@@ -1,0 +1,12 @@
+.items {
+    background: '#4297ad';
+    padding: '3px';
+    font-size: '12px';
+    border-radius: '5px';
+    color:'white';
+    border: '1px solid black'
+  }
+
+  .widget{
+    color: 'black'
+  }

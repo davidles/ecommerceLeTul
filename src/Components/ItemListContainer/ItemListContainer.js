@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import ProductsList from '../ProductsList/ProductsList'
 import ItemList from '../ItemList/ItemList'
 import { getFirestore } from "../../factory/index";
 import './ItemListContainer.css'
@@ -11,10 +10,7 @@ function ItemListContainer() {
 
     const { category } = useParams();
 
-    const { categories, setCategories } = useContext(CartContext)
-
-    const ele={}
-    const [loading, setLoading] = useState(true);
+    const { setCategories } = useContext(CartContext)
 
     const obtenerDatos =  () => {
       if(!category){
@@ -25,24 +21,21 @@ function ItemListContainer() {
           .then(querySnapshot => {
             if (querySnapshot.size === 0) {
               console.log('no results');
-              setLoading(false);
               return;
             }
    
             setCategories(querySnapshot.docs.map((doc) => {
-             const elemento = {
+             const element = {
                 id: doc.id,
                 ...doc.data()
-              }  
-              console.log(elemento)      
-             return elemento
+              }    
+             return element
             }));
             
           
           })
           .catch(error => {
             console.log(error);
-            setLoading(false);
           });
       }else{            
         const db = getFirestore();
@@ -53,7 +46,6 @@ function ItemListContainer() {
           .then(querySnapshot => {
             if (querySnapshot.size === 0) {
               console.log('no results');
-              setLoading(false);
               return;
             }
             setCategories(querySnapshot.docs.map((doc) => {
@@ -63,27 +55,20 @@ function ItemListContainer() {
                }      
               return elemento
              }));
-            setLoading(false);
           })
           .catch(error => {
             console.log(error);
-            setLoading(false);
           });
       }
       
   } 
 
-    useEffect(() => {
-      
-      obtenerDatos()
-
-      
-  }, []);
+    useEffect(() => obtenerDatos(), []);
 
     return (
         <div>
             <h2 className="title">Catálogo de {category || "Productos"}</h2>
-            <ItemList category={categories}/>
+            <ItemList />
         </div>
     )
 }

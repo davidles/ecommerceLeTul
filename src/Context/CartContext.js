@@ -8,49 +8,46 @@ export function CartContextProvider({ children }) {
   const [cart, setCart] = useState(initialState);
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(1);
-  const [ cartItems, setCartItems ] = useState()
+  const [cartItems, setCartItems] = useState()
   const [items, setItems] = useState([]);
   const [categories, setCategories] = useState([]);
 
   const [itemId, setItemId] = useState("")
 
-const addItem = (item, quantity) => {
-  const isInCart = cart.find(x => x.producto.id === item.id)
-  
-  if (isInCart) {
+  const addItem = (item, quantity) => {
+    const isInCart = cart.find(x => x.producto.id === item.id)
 
-    let nuevaCant = isInCart.cantidad + count;
+    if (isInCart) {
 
-    let posicion = cart.indexOf(isInCart);
+      let nuevaCant = isInCart.cantidad + count;
 
-    cart[posicion].cantidad = nuevaCant;
-      
-    setCart(cart);
+      let posicion = cart.indexOf(isInCart);
 
+      cart[posicion].cantidad = nuevaCant;
 
-  } else {
-    
-    setCart([...cart, { producto: item, cantidad: quantity }]);
+      setCart(cart);
 
 
+    } else {
+
+      setCart([...cart, { producto: item, cantidad: quantity }]);
+
+
+    }
   }
-}
 
   function removeItem(itemId) {
     const isInCart = cart.find(x => x.producto.id === itemId)
     let posicion = cart.indexOf(isInCart)
     cart.splice(posicion, 1)
     setCart([...cart])
-  
+
 
   }
 
   function clear() {
     setCart(initialState)
   }
-
-
-console.log(product)
 
   return (
     <CartContext.Provider value={{ product, setProduct, cart, setCart, count, setCount, addItem, removeItem, clear, cartItems, setCartItems, items, setItems, categories, setCategories, itemId, setItemId }}>

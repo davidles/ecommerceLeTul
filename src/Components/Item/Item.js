@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import CartContext from '../../Context/CartContext';
 
 import './Item.css'
 
-const Item = ({ id, title, price, pictureURL,  category })  => {
-
-   
+const Item = ({ id, title, price, pictureURL,  category })  => {   
 
     return (
         <div>
@@ -19,7 +16,7 @@ const Item = ({ id, title, price, pictureURL,  category })  => {
                             <Card.Body>
                                 <Card.Title>{title}</Card.Title>
                                 <Card.Text>
-                                    <p>${category}</p>
+                                    <p>{category}</p>
                                 </Card.Text>
                                 <Card.Text>
                                     <strong>${price}</strong>

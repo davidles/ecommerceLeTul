@@ -1,41 +1,53 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import CartContext from '../../Context/CartContext'
-import { Table, Button } from 'react-bootstrap'
+import { Table, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { getFirestore } from "../../factory/index";
-import * as firebase from 'firebase/app';
-
 
 const Cart = () => {
 
-    const { product, setProduct, cart, setCart, addItem, removeItem, clear, cartItems, setCartItems, itemId, setItemId } = useContext(CartContext)
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [showMsg, setShowMsg] = useState()
+    const message = (msg) => {
+        return `Su operacion ha sido ${msg}`
+    }
+
+    const { setProduct, cart, removeItem, setCartItems, itemId, setItemId } = useContext(CartContext)
 
     let totalPrecio = 0
     let totalItem = 0
     const subtotal = (precio, cantidad) => precio * cantidad
 
-    // const [ totalPrice, setTotalPrice ] = useState(0)
-
-   
-
     const styles = {
         totalesPrecio: {
             background: 'green',
-            color: 'white'
+            color: 'white',
+            fontSize: '20px',
+            fontWidth: 'bold'
         },
         totalesItems: {
-            background: 'grey',
-            color: 'black'
+            background: 'white',
+            color: 'black',
+            fontSize: '20px',
+            fontWidth: 'bold'
+        },
+        titleTable: {
+            fontSize: "18px",
+            fontWidth: 'bold'
         }
     };
 
-    /**************************************** */
 
 
 
-    const [loading, setLoading] = useState(false);
+
+
+
     const saveOrder = () => {
-        setLoading(true);
+
         const db = getFirestore();
         const order = db.collection('orders');
         const newOrder = {
@@ -47,7 +59,7 @@ const Cart = () => {
             date: new Date(),
             total: totalPrecio,
 
-            items: cart.map( ({producto}) => {
+            items: cart.map(({ producto }) => {
                 const itemCart = {
                     id: producto.id,
                     price: producto.price,
@@ -55,18 +67,18 @@ const Cart = () => {
                 }
                 return itemCart
             })
-           
+
 
         };
         order
             .add(newOrder)
             .then(({ id }) => {
-                setLoading(false);
+
                 console.log(`Elemen to creado. ID: ${id}`);
                 setItemId(id)
             })
             .catch(error => {
-                setLoading(false);
+
                 console.log(error);
             });
     };
@@ -84,22 +96,29 @@ const Cart = () => {
 
                     total: totalPrecio,
 
-                    items: [...cart]
+                    items: cart.map(({ producto, cantidad }) => {
+                        const itemCart = {
+                            id: producto.id,
+                            price: producto.price,
+                            title: producto.title,
+                            cantidad: cantidad
+                        }
+                        return itemCart
+                    })
                 }
             )
             .then(() => {
-                setLoading(false);;
+                console.log("guardado");
             })
             .catch(error => {
                 console.log(error);
             });
 
-        console.log("Actualizada")
     }
 
 
+    
 
-    console.log(itemId)
     return (
         <div>
             <h2>Cart</h2>
@@ -110,74 +129,116 @@ const Cart = () => {
                             Agregar producto
                         </Button>
                     </Link>
-                    : <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-
-
-                        {
-                            cart.map(({ producto, cantidad }) => {
-                                totalPrecio += subtotal(producto.price, cantidad)
-                             
-                                totalItem += cantidad
-                                setCartItems(totalItem)
-                                setProduct(producto)
-                               
-
-                                return (
-
-                                    <tbody key={producto.id} >
-                                        <tr>
-                                            
-                                            <td>{producto.title}</td>
-                                            <td>${producto.price}</td>
-                                            <td>
-                                                {cantidad}
-                                            </td>
-                                            <td>${subtotal(producto.price, cantidad)}</td>
-                                            <td>
-                                                <Link exact to={`/item/${producto.id}`}><Button>Add</Button></Link>
-                                                <Button variant="danger" onClick={() => removeItem(producto.id)}>Delete</Button>
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>
-
-                                )
-                            })
-                        }
-                        {
-                            <tbody>
+                    : <>
+                        <Table striped bordered hover>
+                            <thead>
                                 <tr>
-                                    <td>Compra</td>
-                                    <td style={styles.totalesItems}>Total de productos: {totalItem}</td>
-                                    <td style={styles.totalesPrecio}>Total de productos: ${totalPrecio}</td>
-                                    <td>
-                                        <Link to="/">
-                                            <Button variant="info">
-                                                Agregar producto
-                                            </Button>
-                                        </Link>
-                                    </td>
+                                    <th style={styles.titleTable}>Producto</th>
+                                    <th style={styles.titleTable}>Precio</th>
+                                    <th style={styles.titleTable}>Cantidad</th>
+                                    <th style={styles.titleTable}>Total</th>
+                                    <th></th>
                                 </tr>
-                            </tbody>
+                            </thead>
+
+
+                            {
+                                cart.map(({ producto, cantidad }) => {
+                                    totalPrecio += subtotal(producto.price, cantidad)
+
+                                    totalItem += cantidad
+                                    setCartItems(totalItem)
+                                    setProduct(producto)
+
+
+                                    return (
+
+                                        <tbody key={producto.id} >
+                                            <tr>
+
+                                                <td>{producto.title}</td>
+                                                <td>${producto.price}</td>
+                                                <td>
+                                                    {cantidad}
+                                                </td>
+                                                <td>${subtotal(producto.price, cantidad)}</td>
+                                                <td>
+                                                    <Link exact to={`/item/${producto.id}`}><Button>Add</Button></Link>
+                                                    <Button variant="danger" onClick={() => removeItem(producto.id)}>Delete</Button>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    )
+                                })
+                            }
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td style={{ fontSize: "18px" }}>Total de productos:</td>
+                                        <td style={styles.totalesItems}> {totalItem}</td>
+                                        <td style={{ fontSize: "18px" }}>Costo total:</td>
+                                        <td style={styles.totalesPrecio}> ${totalPrecio}</td>
+                                        <td>
+                                            <Link to="/">
+                                                <Button variant="info">
+                                                    Agregar producto
+                                                </Button>
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            }
+
+                        </Table>
+
+
+
+
+                        {
+
+                            (itemId !== "")
+                                ? <Button variant="light" onClick={() => {
+                                    updateOrder(itemId)
+                                    handleShow()
+                                    setShowMsg("actualizada")
+                                }}> Actulizar orden </Button>
+                                : <Button onClick={() => {
+                                    saveOrder()
+                                    handleShow()
+                                    setShowMsg("guardada")
+                                }}> Guardar orden </Button>
+
 
                         }
-                        
-                    </Table>
 
+                        <Modal
+                            show={show}
+                            onHide={handleClose}
+                            backdrop="static"
+                            keyboard={false}
+                        >
+                            <Modal.Header>
+                                <Modal.Title variant={'info'}>Operación Exitosa!</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                {
+                                    message(showMsg)
+                                }
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Ok
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
 
+                    </>
             }
-            <Button onClick={() => saveOrder()}> Guardar orden </Button>
-            <Button variant="light" onClick={() => updateOrder(itemId)}> Actulizar orden </Button>
+
         </div >
     )
 }
