@@ -1,10 +1,10 @@
-#Hi! My name is David
+# Hi! My name is David
 
 This is a project developed in React as a final project in the front-end developer career.
 
 This project is an e-commerce of Just products.
 
-##Components:
+## Components:
 -Cart
 -CartContext
 -ItemDetailContainer
@@ -15,7 +15,7 @@ This project is an e-commerce of Just products.
 -CartWidget
 -NavBar
 
-##Concepts used:
+## Concepts used:
 -ECMA6
 -JSX & Transpiling
 -Components
@@ -27,6 +27,6 @@ This project is an e-commerce of Just products.
 -Rendering
 -Firebase
 
-###Libraries: Bootstrap-React
+### Libraries: Bootstrap-React
 
-###Database used: Firebase
+### Database used: Firebase
