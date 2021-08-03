@@ -1,5 +1,4 @@
 import './App.css';
-
 /*Context*/
 import {CartContextProvider} from './Context/CartContext';
 

@@ -10,7 +10,7 @@ function CartWidget() {
 
     return (
         <div>
-            <i className="fas fa-shopping-bag">
+            <i class="fas fa-shopping-cart">
 
                 {
                     (cartItems >= 1 && cart.length >= 1)
