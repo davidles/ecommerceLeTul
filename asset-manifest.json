@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ecommerceLeTul/static/css/main.b4efd7ff.chunk.css",
+    "main.js": "/ecommerceLeTul/static/js/main.dc36f704.chunk.js",
+    "main.js.map": "/ecommerceLeTul/static/js/main.dc36f704.chunk.js.map",
+    "runtime-main.js": "/ecommerceLeTul/static/js/runtime-main.19b08d46.js",
+    "runtime-main.js.map": "/ecommerceLeTul/static/js/runtime-main.19b08d46.js.map",
+    "static/css/2.0c0f952c.chunk.css": "/ecommerceLeTul/static/css/2.0c0f952c.chunk.css",
+    "static/js/2.7fcfe042.chunk.js": "/ecommerceLeTul/static/js/2.7fcfe042.chunk.js",
+    "static/js/2.7fcfe042.chunk.js.map": "/ecommerceLeTul/static/js/2.7fcfe042.chunk.js.map",
+    "index.html": "/ecommerceLeTul/index.html",
+    "static/css/2.0c0f952c.chunk.css.map": "/ecommerceLeTul/static/css/2.0c0f952c.chunk.css.map",
+    "static/css/main.b4efd7ff.chunk.css.map": "/ecommerceLeTul/static/css/main.b4efd7ff.chunk.css.map",
+    "static/js/2.7fcfe042.chunk.js.LICENSE.txt": "/ecommerceLeTul/static/js/2.7fcfe042.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.19b08d46.js",
+    "static/css/2.0c0f952c.chunk.css",
+    "static/js/2.7fcfe042.chunk.js",
+    "static/css/main.b4efd7ff.chunk.css",
+    "static/js/main.dc36f704.chunk.js"
+  ]
+}
